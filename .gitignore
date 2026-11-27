@@ -1,0 +1,47 @@
+# Dependencies and build output
+node_modules/
+dist/
+.wrangler/
+*.tsbuildinfo
+coverage/
+
+# Secrets: never commit
+.dev.vars
+.dev.vars.*
+!.dev.vars.example
+.env
+.env.*
+!.env.example
+
+# Personal data (GDPR): real logs, photos and exports never go into this public repo.
+# Fictitious test logs live only in shared/src/logparser/fixtures/ (see README there).
+*.adi
+*.adif
+*.ADI
+*.ADIF
+*.cbr
+*.CBR
+*.log
+*.LOG
+*.csv
+*.jpg
+*.jpeg
+*.JPG
+*.JPEG
+*.heic
+*.HEIC
+*.png
+*.PNG
+/data/
+/exports/
+!shared/src/logparser/fixtures/*.adi
+!shared/src/logparser/fixtures/*.cbr
+!web/public/*.png
+!site/assets/*.png
+
+# OS and editor
+.DS_Store
+Thumbs.db
+.vscode/*
+!.vscode/extensions.json
+.idea/
