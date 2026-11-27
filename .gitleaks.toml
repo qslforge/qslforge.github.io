@@ -1,0 +1,28 @@
+# Gitleaks configuration for QSLforge.
+# Extends the default secret rules and adds GDPR guards for a public repository.
+
+[extend]
+useDefault = true
+
+[[rules]]
+id = "email-address"
+description = "E-mail address outside allowed placeholder domains (personal data must not be committed)"
+regex = '''[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}'''
+[rules.allowlist]
+regexes = [
+  '''@example\.(com|org|net)''',
+  '''noreply@anthropic\.com''',
+  '''@users\.noreply\.github\.com''',
+]
+
+[[rules]]
+id = "adif-record"
+description = "ADIF QSO record outside fixtures (real logs must not be committed)"
+regex = '''(?i)<call:\d+>[A-Z0-9/]+.{0,200}<eor>'''
+
+[allowlist]
+description = "Fictitious test data"
+paths = [
+  '''shared/src/logparser/fixtures/''',
+  '''\.gitleaks\.toml''',
+]
