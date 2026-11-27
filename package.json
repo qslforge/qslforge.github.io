@@ -1,0 +1,31 @@
+{
+  "name": "qslforge",
+  "private": true,
+  "version": "0.0.1",
+  "description": "QSLforge: activation, QSL card and QSL mailing platform for portable amateur radio activations",
+  "license": "MIT",
+  "type": "module",
+  "packageManager": "pnpm@10.28.0",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "dev:web": "pnpm --filter @qslforge/web dev",
+    "dev:worker": "pnpm --filter @qslforge/worker dev",
+    "build": "pnpm --filter @qslforge/web build",
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "typecheck": "pnpm -r typecheck",
+    "test": "pnpm -r test",
+    "check": "pnpm format:check && pnpm lint && pnpm typecheck && pnpm test"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "eslint": "^10.15.0",
+    "globals": "^16.0.0",
+    "prettier": "^3.10.1",
+    "typescript": "~5.9.3",
+    "typescript-eslint": "^8.74.0"
+  }
+}

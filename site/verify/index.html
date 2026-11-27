@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="nl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self'; style-src 'self'; connect-src https://*.workers.dev; object-src 'none'; base-uri 'self'"
+    />
+    <title>QSL verificatie · QSLforge</title>
+    <link rel="stylesheet" href="/assets/site.css" />
+    <script src="/assets/config.js"></script>
+    <script src="/assets/verify.js" defer></script>
+  </head>
+  <body>
+    <header>
+      <a href="/">QSL<span class="accent">forge</span></a>
+    </header>
+    <main>
+      <section class="card" id="result">
+        <h1>QSL-verificatie</h1>
+        <p id="status">Bezig met controleren...</p>
+      </section>
+    </main>
+    <footer><a href="/privacy/">Privacy</a></footer>
+  </body>
+</html>

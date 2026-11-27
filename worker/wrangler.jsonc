@@ -1,0 +1,54 @@
+// QSLforge Worker configuration.
+// Fill in database_id after `wrangler d1 create qslforge` (see docs/setup-cloudflare.md).
+// Secrets are NOT set here: use `wrangler secret put <NAME>`.
+{
+  "$schema": "../node_modules/wrangler/config-schema.json",
+  "name": "qslforge",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-11-01",
+  "compatibility_flags": ["nodejs_compat"],
+  "workers_dev": true,
+  "preview_urls": false,
+
+  // The authenticated app (web/) is served by this Worker as static assets,
+  // so app and API share one origin behind Cloudflare Access.
+  "assets": {
+    "directory": "../web/dist",
+    "binding": "ASSETS",
+    "not_found_handling": "single-page-application",
+    "run_worker_first": ["/api/*"],
+  },
+
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "qslforge",
+      "database_id": "REPLACE_WITH_D1_DATABASE_ID",
+      "migrations_dir": "migrations",
+    },
+  ],
+
+  "r2_buckets": [
+    {
+      "binding": "FILES",
+      "bucket_name": "qslforge-files",
+    },
+  ],
+
+  "vars": {
+    "ENVIRONMENT": "production",
+    "APP_VERSION": "0.0.1",
+    "PUBLIC_SITE_ORIGIN": "https://qslforge.github.io",
+    // Cloudflare Access: team domain and Application Audience (AUD) tag.
+    // Both are public identifiers, not secrets.
+    "ACCESS_TEAM_DOMAIN": "https://REPLACE_TEAM.cloudflareaccess.com",
+    "ACCESS_AUD": "REPLACE_WITH_ACCESS_AUD_TAG",
+    // First login with this e-mail address creates the owner account.
+    "OWNER_EMAIL": "REPLACE_WITH_YOUR_ACCESS_EMAIL",
+    "OWNER_CALL": "ON3VZ",
+  },
+
+  "observability": {
+    "enabled": true,
+  },
+}
